@@ -1,15 +1,15 @@
 function dp(filename)
-%µ¹Æ×·¨¼ÆËã»ùÒôÆµÂÊ
+%å€’è°±æ³•è®¡ç®—åŸºéŸ³é¢‘ç‡
 global SUCC;
-[x,fs]=audioread(filename);%¶ÁÈ¡ÉùÒôÎÄ¼ş
+[x,fs]=audioread(filename);%è¯»å–å£°éŸ³æ–‡ä»¶
 data = x(:,1);
 data=data';
-n=fs/50;   %È¡20msµÄÉùÒôÆ¬¶Î£¬¼´160¸öÑùµã
-for m=1:length(data)/n           %¶ÔÃ¿Ò»Ö¡Çó¶ÌÊ±×ÔÏà¹Øº¯Êı
+n=fs/50;     %å–20msçš„å£°éŸ³ç‰‡æ®µï¼Œå³160ä¸ªæ ·ç‚¹
+for m=1:length(data)/n           %å¯¹æ¯ä¸€å¸§æ±‚çŸ­æ—¶è‡ªç›¸å…³å‡½æ•°
     offset = (m-1)*n;
     frame = data(offset+1:offset+n);
-    frame2=frame.*hamming(length(frame));           % ¼ÓººÃ÷´°
-    rwy=dpjs(frame2);                              %Çóµ¹Æ×
+    frame2=frame.*hamming(length(frame));           % åŠ æ±‰æ˜çª—
+    rwy=dpjs(frame2);                              %æ±‚å€’è°±
     ylen=length(rwy);
     cepstrum=rwy(1:ylen/2);
     for i=1:ylen/2
@@ -19,8 +19,8 @@ for m=1:length(data)/n           %¶ÔÃ¿Ò»Ö¡Çó¶ÌÊ±×ÔÏà¹Øº¯Êı
         cepstrum1(i)=rwy(i+1-ylen/2);
     end
 
-    %=============»ùÒô¼ì²â============
-    LF=floor(fs/500);%ÉèÖÃ»ùÒôËÑË÷µÄ·¶Î§70Hz¡ª500Hz
+    %=============åŸºéŸ³æ£€æµ‹============
+    LF=floor(fs/500);%è®¾ç½®åŸºéŸ³æœç´¢çš„èŒƒå›´70Hzâ€”500Hz
     HF=floor(fs/70);
     cn=cepstrum1(LF:HF);
     [mx_cep ind]=max(cn);
