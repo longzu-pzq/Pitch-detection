@@ -1,11 +1,11 @@
 function dp(filename)
-%倒谱法计算基音频率
+% 倒谱法计算基音频率
 global SUCC;
-[x,fs]=audioread(filename);%读取声音文件
+[x,fs]=audioread(filename);% 读取声音文件
 data = x(:,1);
 data=data';
-n=fs/50;     %取20ms的声音片段，即160个样点
-for m=1:length(data)/n           %对每一帧求短时自相关函数
+n=fs/50;     % 取20ms的声音片段，即160个样点
+for m=1:length(data)/n           % 对每一帧求短时自相关函数
     offset = (m-1)*n;
     frame = data(offset+1:offset+n);
     frame2=frame.*hamming(length(frame));           % 加汉明窗
